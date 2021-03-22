@@ -1,0 +1,287 @@
+<html>
+	<head>
+		<title>幾何</title>
+		<script src="https://threejs.org/build/three.js"></script>
+		<script src="https://threejs.org/examples/js/controls/TrackballControls.js"></script>
+		
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+
+		</style>
+	</head>
+	<body>
+		<script>
+			var scene = new THREE.Scene();
+
+			var camera = new THREE.PerspectiveCamera( 65, window.innerWidth/window.innerHeight, 1, 1000);
+			
+
+			camera.position.set( 0, 0, 9 );
+			camera.lookAt(0,0,0);
+			
+
+			var renderer = new THREE.WebGLRenderer({alpha:true});
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+
+			var controls = new THREE.TrackballControls(camera, renderer.domElement);
+			controls.update();
+
+			var light = new THREE.DirectionalLight( 0xffffff, 1 );
+			light.position.set(1,1,1).normalize();
+			scene.add(light);
+
+
+			//圖形
+			var cubegeometry = new THREE.BoxGeometry( 1, 1, 1 );
+			var cubematerial = new THREE.MeshBasicMaterial( { color: '#DFF68F' } );
+			var cube = new THREE.Mesh( cubegeometry, cubematerial );
+			scene.add( cube );
+			cube.position.set(0,-4,0);
+			var cubeedges = new THREE.EdgesGeometry(cubegeometry);
+			var cubeedgesline = new THREE.LineSegments( cubeedges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(cubeedgesline);
+			cubeedgesline.position.set(0, -4,0);
+
+
+			var dodecgeometry = new THREE.DodecahedronGeometry(1, 0);
+			var dodecmaterial = new THREE.MeshBasicMaterial( { color: '#C3914E' } );
+			var dodec = new THREE.Mesh(dodecgeometry,dodecmaterial);
+			scene.add(dodec);
+			dodec.position.set(0,-2, 0);
+			var dodecedges = new THREE.EdgesGeometry(dodecgeometry);
+			var dodecedgesline = new THREE.LineSegments( dodecedges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(dodecedgesline);
+			dodecedgesline.position.set(0, -2,0);
+
+			
+			var tetrgeometry = new THREE.TetrahedronGeometry(1,0);
+			var tetrmaterial = new THREE.MeshBasicMaterial( { color: '#584E63' } );
+			var tetr = new THREE.Mesh( tetrgeometry, tetrmaterial );
+			scene.add( tetr );
+			tetr.position.set(0,0,0);
+			var tetredges = new THREE.EdgesGeometry(tetrgeometry);
+			var tetredgesline = new THREE.LineSegments( tetredges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(tetredgesline);
+			tetredgesline.position.set(0, 0,0);
+			
+			
+			var icosgeometry = new THREE.IcosahedronGeometry(1,0);
+			var icosmaterial = new THREE.MeshBasicMaterial( { color: '#586E58' } );
+			var icos = new THREE.Mesh( icosgeometry, icosmaterial );
+			scene.add( icos );
+			icos.position.set(0,2,0);
+			var icosedges = new THREE.EdgesGeometry(icosgeometry);
+			var icosedgesline = new THREE.LineSegments( icosedges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(icosedgesline);
+			icosedgesline.position.set(0, 2,0);
+
+			
+			var octgeometry = new THREE.OctahedronGeometry(1,0);
+			var octmaterial = new THREE.MeshBasicMaterial( { color: '#70613D' } );
+			var oct = new THREE.Mesh( octgeometry, octmaterial );
+			scene.add( oct );
+			oct.position.set(0,4,0);
+			var octedges = new THREE.EdgesGeometry(octgeometry);
+			var octedgesline = new THREE.LineSegments( octedges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(octedgesline);
+			octedgesline.position.set(0, 4,0);
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+			/*
+			var cubegeometry = new THREE.BoxGeometry( 1, 1, 1 );
+			var cubematerial = new THREE.MeshBasicMaterial( { color: '#DFF68F' } );
+			var cube = new THREE.Mesh( cubegeometry, cubematerial );
+			scene.add( cube );
+			cube.position.set(0,-3,0);
+
+			var dodecgeometry = new THREE.DodecahedronGeometry(1, 0);
+			var dodecmaterial = new THREE.MeshBasicMaterial( { color: '#C3914E' } );
+			var dodec = new THREE.Mesh(dodecgeometry,dodecmaterial);
+			scene.add(dodec);
+			dodec.position.set(-2,-3, 2);
+			
+			var tetrgeometry = new THREE.TetrahedronGeometry(1,0);
+			var tetrmaterial = new THREE.MeshBasicMaterial( { color: '#584E63' } );
+			var tetr = new THREE.Mesh( tetrgeometry, tetrmaterial );
+			scene.add( tetr );
+			tetr.position.set(-5,-3,0);
+			
+			var icosgeometry = new THREE.IcosahedronGeometry(1,0);
+			var icosmaterial = new THREE.MeshBasicMaterial( { color: '#586E58' } );
+			var icos = new THREE.Mesh( icosgeometry, icosmaterial );
+			scene.add( icos );
+			icos.position.set(2,-3,2);
+			
+			var octgeometry = new THREE.OctahedronGeometry(1,0);
+			var octmaterial = new THREE.MeshBasicMaterial( { color: '#70613D' } );
+			var oct = new THREE.Mesh( octgeometry, octmaterial );
+			scene.add( oct );
+			oct.position.set(5,-3,0);
+
+
+
+			var cubeedges = new THREE.EdgesGeometry(cubegeometry);
+			var cubeedgesline = new THREE.LineSegments( cubeedges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(cubeedgesline);
+			cubeedgesline.position.set(0, -1,0);
+
+			var dodecedges = new THREE.EdgesGeometry(dodecgeometry);
+			var dodecedgesline = new THREE.LineSegments( dodecedges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(dodecedgesline);
+			dodecedgesline.position.set(-2, -1,2);
+
+			var tetredges = new THREE.EdgesGeometry(tetrgeometry);
+			var tetredgesline = new THREE.LineSegments( tetredges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(tetredgesline);
+			tetredgesline.position.set(-5, -1,0);
+
+			var icosedges = new THREE.EdgesGeometry(icosgeometry);
+			var icosedgesline = new THREE.LineSegments( icosedges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(icosedgesline);
+			icosedgesline.position.set(2, -1,2);
+
+			var octedges = new THREE.EdgesGeometry(octgeometry);
+			var octedgesline = new THREE.LineSegments( octedges, new THREE.LineBasicMaterial({color:0xffffff}));
+			scene.add(octedgesline);
+			octedgesline.position.set(5, -1,0);
+
+
+
+			var cubematerialtranslucent = new THREE.MeshBasicMaterial( { color: '#DFF68F',opacity:0.7,transparent:true } );//呈現半透明效果opacity&transparent要一起使用
+			var cubetranslucent = new THREE.Mesh(cubegeometry,cubematerialtranslucent);
+			scene.add(cubetranslucent);
+			cubetranslucent.position.set(0, 1,0);
+
+			var dodecmaterialtranslucent = new THREE.MeshBasicMaterial( { color: '#C3914E',opacity:0.7,transparent:true } );//呈現半透明效果opacity&transparent要一起使用
+			var dodectranslucent = new THREE.Mesh(dodecgeometry,dodecmaterialtranslucent);
+			scene.add(dodectranslucent);
+			dodectranslucent.position.set(-2, 1,2);
+
+			var tetrmaterialtranslucent = new THREE.MeshBasicMaterial( { color: '#584E63',opacity:0.7,transparent:true } );//呈現半透明效果opacity&transparent要一起使用
+			var tetrtranslucent = new THREE.Mesh(tetrgeometry,tetrmaterialtranslucent);
+			scene.add(tetrtranslucent);
+			tetrtranslucent.position.set(-5, 1,0);
+
+			var icosmaterialtranslucent = new THREE.MeshBasicMaterial( { color: '#586E58',opacity:0.7,transparent:true } );//呈現半透明效果opacity&transparent要一起使用
+			var icostranslucent = new THREE.Mesh(icosgeometry,icosmaterialtranslucent);
+			scene.add(icostranslucent);
+			icostranslucent.position.set(2, 1,2);
+
+			var octmaterialtranslucent = new THREE.MeshBasicMaterial( { color: '#70613D',opacity:0.7,transparent:true } );//呈現半透明效果opacity&transparent要一起使用
+			var octtranslucent = new THREE.Mesh(octgeometry,octmaterialtranslucent);
+			scene.add(octtranslucent);
+			octtranslucent.position.set(5, 1,0);
+
+
+
+			var cubewireframegeometry = new THREE.WireframeGeometry(cubegeometry);
+			var cubeline = new THREE.LineSegments(cubewireframegeometry);
+			cubeline.material.depthTest = false;
+			cubeline.material.opacity = 1;
+			cubeline.material.transparent = true;
+			cubeline.material.color.set(0xffffff);
+			scene.add(cubeline);
+			cubeline.position.set(0,3,0);
+
+			var dodecwireframegeometry = new THREE.WireframeGeometry(dodecgeometry);
+			var dodecline = new THREE.LineSegments(dodecwireframegeometry);
+			dodecline.material.depthTest = false;
+			dodecline.material.opacity = 1;
+			dodecline.material.transparent = true;
+			dodecline.material.color.set(0xffffff);
+			scene.add(dodecline);
+			dodecline.position.set(-2,3,2);
+
+			var tetrwireframegeometry = new THREE.WireframeGeometry(tetrgeometry);
+			var tetrline = new THREE.LineSegments(tetrwireframegeometry);
+			tetrline.material.depthTest = false;
+			tetrline.material.opacity = 1;
+			tetrline.material.transparent = true;
+			tetrline.material.color.set(0xffffff);
+			scene.add(tetrline);
+			tetrline.position.set(-5,3,0);
+
+			var icoswireframegeometry = new THREE.WireframeGeometry(icosgeometry);
+			var icosline = new THREE.LineSegments(icoswireframegeometry);
+			icosline.material.depthTest = false;
+			icosline.material.opacity = 1;
+			icosline.material.transparent = true;
+			icosline.material.color.set(0xffffff);
+			scene.add(icosline);
+			icosline.position.set(2,3,2);
+
+			var octwireframegeometry = new THREE.WireframeGeometry(octgeometry);
+			var octline = new THREE.LineSegments(octwireframegeometry);
+			octline.material.depthTest = false;
+			octline.material.opacity = 1;
+			octline.material.transparent = true;
+			octline.material.color.set(0xffffff);
+			scene.add(octline);
+			octline.position.set(5,3,0);
+			*/
+
+
+			/*//滑鼠點擊
+			var raycaster = new THREE.Raycaster();
+			var mouse = new THREE.Vector2();
+
+			function onMouseClick( event ) {
+				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	        	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+	        	// 通过摄像机和鼠标位置更新射线
+				raycaster.setFromCamera( mouse, camera );
+
+				// 计算物体和射线的焦点
+				var intersects = raycaster.intersectObjects( scene.children );
+
+				for ( var i = 0; i < intersects.length; i++ ) {
+
+				intersects[ i ].object.material.color.set(0x990000);
+	        	}
+	        }
+
+
+
+	        window.addEventListener( 'click', onMouseClick, false );
+	       */
+
+    		
+
+    		//
+			var animate = function () {
+
+				requestAnimationFrame( animate );
+				controls.update();
+				renderer.render( scene, camera );
+				
+				
+				/*cube.rotation.z += 0.01;
+				dodec.rotation.y += 0.01;
+				tetr.rotation.y += 0.01;
+				icos.rotation.y += 0.01;
+				oct.rotation.y +=0.01;*/
+
+			};
+
+			animate();
+			
+		</script>
+	</body>
+</html>
